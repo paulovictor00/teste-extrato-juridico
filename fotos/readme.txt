@@ -1,0 +1,1 @@
+Foi necessario criar esse txt para a pasta fotos entrar no commit pois o git não da push em pasta vazia 
