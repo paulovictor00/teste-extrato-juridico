@@ -33,9 +33,9 @@ for titulo in range(len(regex_titulos)):
 
 
 with open("dados.json", "w", encoding="utf-8") as arquivo:
-    json.dump(data, arquivo, ensure_ascii=False)
+    json.dump(data, arquivo, ensure_ascii=False,indent=4)
 
-print(json.dumps(data))
+print(json.dumps(data,indent=4))
 
 cout = 0
 for foto in regex_fotos:
@@ -54,4 +54,3 @@ for foto in regex_fotos:
      
 
 
-     
