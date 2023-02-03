@@ -51,3 +51,7 @@ for foto in regex_fotos:
         f.write(response)
     
     cout = cout + 1
+     
+
+
+     
