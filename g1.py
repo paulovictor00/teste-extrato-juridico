@@ -13,23 +13,19 @@ header = {
 
 html = requests.get(url,headers=header).content.decode('utf-8')
 
-regex_titulos = re.findall(r'<div\s*class="_evt"><h2><a\shref="[^>]*"\s*class="feed-post-link gui-color-primary\s*gui-color-hover"\s[^>]*">([^>]*)</a></h2>',str(html),re.S)
+regex_sub_ti = re.findall(r'class=[^>]*chapeu">([^<]*)</span>.*?class=[^>]*ssr">([^<]*)<',html,re.S)
 
-regex_subtitulos = re.findall(r'<div class="bstn-fd-relatedtext"><a class="[^>]*"\s*href="[^>]*">([^<]*)</a>|<div class="feed-post-body-resumo" elementtiming="text-ssr">(.*?)</div>',str(html),re.S)
 
 regex_fotos = re.findall(r'<img class="bstn-fd-picture-image".*?srcSet="(.*?)"\s*/>', html, re.IGNORECASE)
 
-lista_subtitulo = []
 
-for eliminar_espaco_em_branco in regex_subtitulos:
-    for eliminar in range(len(eliminar_espaco_em_branco)):
-        if eliminar_espaco_em_branco[eliminar] != "":
-            lista_subtitulo.append(eliminar_espaco_em_branco[eliminar])
             
 data = {}
 
-for titulo in range(len(regex_titulos)):
-    dados = data[regex_titulos[titulo]] = lista_subtitulo[titulo]
+for titulo in regex_sub_ti:
+    title = titulo[0]
+    subtitle = titulo[1]
+    data[title] = subtitle 
 
 
 with open("dados.json", "w", encoding="utf-8") as arquivo:
